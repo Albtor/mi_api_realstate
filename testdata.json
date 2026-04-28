@@ -1,0 +1,39 @@
+{
+  "titulo": "Ático luminoso con vistas al parque",
+  "tipo": "Piso",
+  "precio": 250000,
+  "moneda": "EUR",
+  "detalles": {
+    "habitaciones": 3,
+    "banos": 2,
+    "superficie_m2": 95,
+    "terraza": true,
+    "ascensor": true
+  },
+  "ubicacion": {
+    "calle": "Calle Mayor 15",
+    "ciudad": "Madrid",
+    "codigo_postal": "28001"
+  },
+  "estado": "Disponible"
+}
+
+{
+  "titulo": "2º con ascensor",
+  "tipo": "Piso",
+  "precio": 170000,
+  "moneda": "EUR",
+  "detalles": {
+    "habitaciones": 2,
+    "banos": 2,
+    "superficie_m2": 65,
+    "terraza": true,
+    "ascensor": true
+  },
+  "ubicacion": {
+    "calle": "Calle Mayor 5",
+    "ciudad": "Madrid",
+    "codigo_postal": "28004"
+  },
+  "estado": "Disponible"
+}
