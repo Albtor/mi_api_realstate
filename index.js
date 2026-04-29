@@ -63,7 +63,7 @@ app.get('/', (req, res) => res.send('¡API REAL STATE LIVE 🏠!'));
 
 app.get('/propiedades', (req, res) => res.json(propiedades));
 
-app.post('/propiedades', (req, res) => {
+app.post('/propiedades', authMiddleware, (req, res) => {
     // Generamos un ID basado en el último elemento o 1 si está vacío
     const nuevoId = propiedades.length > 0 ? propiedades[propiedades.length - 1].id + 1 : 1;
     const nuevaPropiedad = { id: nuevoId, ...req.body };
@@ -72,7 +72,7 @@ app.post('/propiedades', (req, res) => {
 });
 
 // 3. Actualizar una propiedad (PUT)
-app.put('/propiedades/:id', (req, res) => {
+app.put('/propiedades/:id', authMiddleware, (req, res) => {
     const id = parseInt(req.params.id);
     const index = propiedades.findIndex(p => p.id === id);
 
@@ -87,7 +87,7 @@ app.put('/propiedades/:id', (req, res) => {
 });
 
 // 4. Eliminar una propiedad (DELETE)
-app.delete('/propiedades/:id', (req, res) => {
+app.delete('/propiedades/:id', authMiddleware, (req, res) => {
     const id = parseInt(req.params.id);
     const inicialLength = propiedades.length;
     propiedades = propiedades.filter(p => p.id !== id);
