@@ -1,6 +1,6 @@
-{
+[{
   "id": 1,
-  "titulo": "Ático luminoso con vistas al parque",
+  "titulo": "Ático luminoso con vistas al Retiro",
   "tipo": "Piso",
   "precio": 250000,
   "moneda": "EUR",
@@ -17,9 +17,9 @@
     "codigo_postal": "28001"
   },
   "estado": "Disponible"
-}
-
+},
 {
+  "id": 2,
   "titulo": "2º con ascensor",
   "tipo": "Piso",
   "precio": 170000,
@@ -28,13 +28,35 @@
     "habitaciones": 2,
     "banos": 2,
     "superficie_m2": 65,
-    "terraza": true,
+    "terraza": false,
     "ascensor": true
   },
   "ubicacion": {
-    "calle": "Calle Mayor 5",
-    "ciudad": "Madrid",
-    "codigo_postal": "28004"
+    "calle": "Calle Marqués de Barberá",
+    "ciudad": "Barcelona",
+    "codigo_postal": "08004"
+  },
+  "estado": "Disponible"
+},
+{
+  "id": 3,
+  "titulo": "Villa con Piscina",
+  "tipo": "Chalet",
+  "precio": 300000,
+  "moneda": "EUR",
+  "detalles": {
+    "habitaciones": 4,
+    "banos": 2,
+    "superficie_m2": 125,
+    "terraza": true,
+    "ascensor": true,
+    "piscina": true
+  },
+  "ubicacion": {
+    "calle": "Calle Orotava 5",
+    "ciudad": "Tenerife",
+    "codigo_postal": "38004"
   },
   "estado": "Disponible"
 }
+]
