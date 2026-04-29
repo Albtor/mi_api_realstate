@@ -28,6 +28,21 @@ let propiedades = [
 }
 ];
 
+const jwt = require("jsonwebtoken");
+const SECRET = "supersecret"; // luego usa .env
+
+app.post("/login", (req, res) => {
+    const { username, password } = req.body;
+
+    // Ejemplo simple
+    if (username === "admin" && password === "1234") {
+        const token = jwt.sign({ username }, SECRET, { expiresIn: "1h" });
+        return res.json({ token });
+    }
+
+    res.status(401).json({ mensaje: "Credenciales incorrectas" });
+});
+
 // RUTAS
 app.get('/', (req, res) => res.send('¡API Funcionando!'));
 
@@ -68,6 +83,24 @@ app.delete('/propiedades/:id', (req, res) => {
         res.status(404).json({ mensaje: "No se encontró la propiedad para eliminar" });
     }
 });
+
+function authMiddleware(req, res, next) {
+    const authHeader = req.headers["authorization"];
+
+    if (!authHeader) {
+        return res.status(401).json({ mensaje: "Token requerido" });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    try {
+        const decoded = jwt.verify(token, SECRET);
+        req.user = decoded;
+        next();
+    } catch (err) {
+        return res.status(403).json({ mensaje: "Token inválido" });
+    }
+}
 
 // PUERTO: Usa el puerto que asigne el hosting o el 3000 por defecto
 const PORT = process.env.PORT || 3000;

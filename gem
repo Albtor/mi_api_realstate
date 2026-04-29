@@ -1,0 +1,80 @@
+¡Excelente decisión! Empezar en local con **Node.js** es la mejor forma de aprender. Una vez que la tengas funcionando, subirla a internet de forma gratuita es bastante sencillo.
+
+Aquí tienes el plan de acción para tener tu API lista y preparada para el "despliegue".
+
+---
+
+## 1. Configuración del proyecto local
+
+Crea una carpeta y prepara el terreno. Vamos a usar **Express** (el framework) y **Nodemon** (una herramienta que reinicia el servidor automáticamente cuando guardas cambios, ¡te ahorrará mucho tiempo!).
+
+```bash
+mkdir mi-api-gratis
+cd mi-api-gratis
+npm init -y
+npm install express
+npm install --save-dev nodemon
+```
+
+### El archivo `package.json`
+Abre tu `package.json` y añade esta línea en la sección de `"scripts"` para que sea fácil de ejecutar:
+
+```json
+"scripts": {
+  "start": "node index.js",
+  "dev": "nodemon index.js"
+}
+```
+
+---
+
+## 2. El código de la API (`index.js`)
+
+Crea el archivo `index.js`. Este código es un CRUD básico que usa un puerto dinámico (importante para cuando la subas a la nube).
+
+```javascript
+const express = require('express');
+const app = express();
+
+// Middleware para JSON
+app.use(express.json());
+
+// Datos en memoria (simulando DB)
+let propiedades = [
+    { id: 1, titulo: 'Aprender Node.js', completada: false },
+];
+
+// RUTAS
+app.get('/', (req, res) => res.send('¡API Funcionando!'));
+
+app.get('/propiedades', (req, res) => res.json(propiedades));
+
+app.post('/propiedades', (req, res) => {
+    const nuevaPropiedad = { id: propiedades.length + 1, ...req.body };
+    propiedades.push(nuevaPropiedad);
+    res.status(201).json(nuevaPropiedad);
+});
+
+// PUERTO: Usa el puerto que asigne el hosting o el 3000 por defecto
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor en http://localhost:${PORT}`);
+});
+```
+
+Para probarla en local, solo escribe:
+```bash
+npm run dev
+```
+
+
+
+## 4. Pasos críticos para el éxito
+
+Para que tu API se pueda subir sin errores, asegúrate de cumplir estos 3 requisitos:
+
+* **`process.env.PORT`**: Como viste en el código, no fuerces el puerto 3000. El hosting te asignará uno aleatorio.
+* **`.gitignore`**: Crea un archivo llamado `.gitignore` y escribe dentro `node_modules`. **Nunca** subas esa carpeta a GitHub; el hosting la instalará por ti.
+* **GitHub**: Necesitarás una cuenta de GitHub para subir tu código. Los hostings gratis se conectan a tu repositorio para publicar la API.
+
+**¿Quieres que te explique cómo crear el archivo `.gitignore` correctamente o pasamos directamente a cómo probar el POST desde Postman con este código?**
