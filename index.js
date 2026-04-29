@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
+const jwt = require("jsonwebtoken");
 
 // Middleware para JSON
 app.use(express.json());
@@ -28,14 +30,15 @@ let propiedades = [
 }
 ];
 
-const jwt = require("jsonwebtoken");
-const SECRET = "supersecret"; // luego usa .env
+const SECRET = process.env.JWT_SECRET;
 
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
 
-    // Ejemplo simple
-    if (username === "admin" && password === "1234") {
+    if (
+        username === process.env.ADMIN_USER &&
+        password === process.env.ADMIN_PASS
+    ) {
         const token = jwt.sign({ username }, SECRET, { expiresIn: "1h" });
         return res.json({ token });
     }
@@ -43,8 +46,20 @@ app.post("/login", (req, res) => {
     res.status(401).json({ mensaje: "Credenciales incorrectas" });
 });
 
+// app.post("/login", (req, res) => {
+//     const { username, password } = req.body;
+
+//     // Ejemplo simple
+//     if (username === "" && password === "") {
+//         const token = jwt.sign({ username }, SECRET, { expiresIn: "1h" });
+//         return res.json({ token });
+//     }
+
+//     res.status(401).json({ mensaje: "Credenciales incorrectas" });
+// });
+
 // RUTAS
-app.get('/', (req, res) => res.send('¡API Funcionando!'));
+app.get('/', (req, res) => res.send('¡API REAL STATE LIVE 🏠!'));
 
 app.get('/propiedades', (req, res) => res.json(propiedades));
 
