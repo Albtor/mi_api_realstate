@@ -1,0 +1,92 @@
+const schema = {
+  type: "object",
+  required: ["id", "titulo", "tipo", "precio", "moneda", "ubicacion", "estado"],
+  properties: {
+    id: { type: "integer" },
+
+    titulo: { type: "string", minLength: 5 },
+
+    tipo: {
+      type: "string",
+      enum: ["Piso", "Casa", "Ático", "Estudio", "Chalet"]
+    },
+
+    precio: { type: "number", minimum: 0 },
+
+    preciom2: { type: "number", minimum: 0 },
+
+    moneda: {
+      type: "string",
+      enum: ["EUR", "USD"]
+    },
+
+    vivienda: {
+      type: "object",
+      required: ["habitaciones", "banos", "superficie_m2"],
+      properties: {
+        habitaciones: { type: "integer", minimum: 0 },
+        banos: { type: "integer", minimum: 0 },
+        superficie_m2: { type: "number", minimum: 0 },
+
+        terraza: { type: "boolean" },
+        ascensor: { type: "boolean" },
+        garaje: { type: "boolean" },
+        trastero: { type: "boolean" },
+
+        planta: { type: "integer" },
+
+        orientacion: {
+          type: "array",
+          items: {
+            type: "string",
+            enum: ["norte", "sur", "este", "oeste"]
+          }
+        }
+      },
+      additionalProperties: false
+    },
+
+    edificio: {
+      type: "object",
+      properties: {
+        año: { type: "integer" },
+        numVecinos: { type: "integer" },
+        numeroPlantas: { type: "integer" },
+
+        extras: {
+          type: "array",
+          items: { type: "string" }
+        }
+      },
+      additionalProperties: false
+    },
+
+    ubicacion: {
+      type: "object",
+      required: ["ciudad", "pais"],
+      properties: {
+        calle: { type: "string" },
+        ciudad: { type: "string" },
+        codigo_postal: { type: "string" },
+        provincia: { type: "string" },
+        pais: {
+          type: "string",
+          enum: ["ES", "FR", "PT"]
+        }
+      },
+      additionalProperties: false
+    },
+
+    estado: {
+      type: "string",
+      enum: ["Disponible", "Reservado", "Vendido"]
+    },
+
+    legalStatus: {
+      type: "string",
+      enum: ["libre", "ocupada", "en litigio"]
+    }
+  },
+
+  additionalProperties: false
+};

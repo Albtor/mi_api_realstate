@@ -13,20 +13,34 @@ let propiedades = [
   "titulo": "Ático luminoso con vistas al parque",
   "tipo": "Piso",
   "precio": 250000,
+  "preciom2": 0,
   "moneda": "EUR",
-  "detalles": {
+  "vivienda": {
     "habitaciones": 3,
     "banos": 2,
     "superficie_m2": 95,
     "terraza": true,
-    "ascensor": true
+    "ascensor": true,
+    "garaje": false,
+    "trastero": true,
+    "planta": 2,
+    "orientacion": ["este", "sur"],
+  },
+  "edificio":{
+    "año": 1987,
+    "numVecinos": 10,
+    "numeroPlantas": 2,
+    "extras": ["piscina comunitaria", "pistas deportivas", "gimnasio"]
   },
   "ubicacion": {
     "calle": "Calle Mayor 15",
     "ciudad": "Madrid",
-    "codigo_postal": "28001"
+    "codigo_postal": "28001",
+    "provincia": "Madrid",
+    "pais": "ES"
   },
-  "estado": "Disponible"
+  "estado": "Disponible",
+  "legajStatus": "ocupada"
 }
 ];
 
