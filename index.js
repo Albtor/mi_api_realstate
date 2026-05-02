@@ -28,14 +28,20 @@ let propiedades = [
     "año": 1987,
     "numVecinos": 10,
     "numeroPlantas": 2,
-    "extras": ["piscina comunitaria", "pistas deportivas", "gimnasio"]
+    "extras": {
+        "piscina": "comunitaria",
+        "gimnasio": true,
+        "jacuzzi": false,
+        "pistasDeportivas": true
+    },
   },
   "ubicacion": {
     "calle": "Calle Mayor 15",
     "ciudad": "Madrid",
     "codigo_postal": "28001",
     "provincia": "Madrid",
-    "pais": "ES"
+    "pais": "ES",
+    "visibility": true
   },
   "estado": "Disponible",
   "legalStatus": "ocupada"
@@ -66,7 +72,12 @@ app.get('/propiedades', (req, res) => res.json(propiedades));
 app.post('/propiedades', authMiddleware, (req, res) => {
     // Generamos un ID basado en el último elemento o 1 si está vacío
     const nuevoId = propiedades.length > 0 ? propiedades[propiedades.length - 1].id + 1 : 1;
-    const nuevaPropiedad = { id: nuevoId, ...req.body };
+    const nuevaPropiedad = {
+        id: nuevoId,
+        ...req.body,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    };
     propiedades.push(nuevaPropiedad);
     res.status(201).json(nuevaPropiedad);
 });
@@ -77,9 +88,12 @@ app.put('/propiedades/:id', authMiddleware, (req, res) => {
     const index = propiedades.findIndex(p => p.id === id);
 
     if (index !== -1) {
-        // Combinamos la propiedad existente con los nuevos datos del body
-        // Nota: Si envías un objeto "detalles" parcial, este reemplazará al anterior
-        propiedades[index] = { ...propiedades[index], ...req.body, id }; 
+        propiedades[index] = {
+            ...propiedades[index],
+            ...req.body,
+            id,
+            updatedAt: new Date() // 👈 solo actualizas este
+        };
         res.json(propiedades[index]);
     } else {
         res.status(404).json({ mensaje: "Propiedad no encontrada" });

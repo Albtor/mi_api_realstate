@@ -3,18 +3,13 @@ const schema = {
   required: ["id", "titulo", "tipo", "precio", "moneda", "ubicacion", "estado"],
   properties: {
     id: { type: "integer" },
-
     titulo: { type: "string", minLength: 5 },
-
     tipo: {
       type: "string",
       enum: ["Piso", "Casa", "Ático", "Estudio", "Chalet"]
     },
-
     precio: { type: "number", minimum: 0 },
-
     preciom2: { type: "number", minimum: 0 },
-
     moneda: {
       type: "string",
       enum: ["EUR", "USD"]
@@ -27,21 +22,19 @@ const schema = {
         habitaciones: { type: "integer", minimum: 0 },
         banos: { type: "integer", minimum: 0 },
         superficie_m2: { type: "number", minimum: 0 },
-
         terraza: { type: "boolean" },
         ascensor: { type: "boolean" },
         garaje: { type: "boolean" },
         trastero: { type: "boolean" },
-
         planta: { type: "integer" },
-
         orientacion: {
           type: "array",
           items: {
             type: "string",
             enum: ["norte", "sur", "este", "oeste"]
           }
-        }
+        },
+        "extrasVivienda": ["piscina, gimnasio"]
       },
       additionalProperties: false
     },
@@ -72,7 +65,8 @@ const schema = {
         pais: {
           type: "string",
           enum: ["ES", "FR", "PT"]
-        }
+        },
+        visibility: { type: "boolean" },
       },
       additionalProperties: false
     },

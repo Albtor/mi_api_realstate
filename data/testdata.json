@@ -16,6 +16,12 @@
     "ciudad": "Madrid",
     "codigo_postal": "28001"
   },
+  "extras": {
+  "piscina": "comunitaria",
+  "gimnasio": true,
+  "jacuzzi": false,
+  "pistasDeportivas": true
+},
   "estado": "Disponible"
 },
 {
