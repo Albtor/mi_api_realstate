@@ -2,9 +2,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
-
-// Middleware para JSON
-app.use(express.json());
+app.use(express.json()); // Middleware para JSON
 
 // Datos en memoria (simulando DB)
 let propiedades = [
@@ -40,7 +38,7 @@ let propiedades = [
     "pais": "ES"
   },
   "estado": "Disponible",
-  "legajStatus": "ocupada"
+  "legalStatus": "ocupada"
 }
 ];
 
@@ -50,8 +48,8 @@ app.post("/login", (req, res) => {
     const { username, password } = req.body;
 
     if (
-        username === process.env.ADMIN_USER &&
-        password === process.env.ADMIN_PASS
+        username.trim() === process.env.ADMIN_USER.trim() &&
+        password.trim() === process.env.ADMIN_PASS.trim()
     ) {
         const token = jwt.sign({ username }, SECRET, { expiresIn: "1h" });
         return res.json({ token });
@@ -59,18 +57,6 @@ app.post("/login", (req, res) => {
 
     res.status(401).json({ mensaje: "Credenciales incorrectas" });
 });
-
-// app.post("/login", (req, res) => {
-//     const { username, password } = req.body;
-
-//     // Ejemplo simple
-//     if (username === "" && password === "") {
-//         const token = jwt.sign({ username }, SECRET, { expiresIn: "1h" });
-//         return res.json({ token });
-//     }
-
-//     res.status(401).json({ mensaje: "Credenciales incorrectas" });
-// });
 
 // RUTAS
 app.get('/', (req, res) => res.send('¡API REAL STATE LIVE 🏠!'));
