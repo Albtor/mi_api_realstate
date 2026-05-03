@@ -22,7 +22,9 @@
   "jacuzzi": false,
   "pistasDeportivas": true
 },
-  "estado": "Disponible"
+  "estado": "Disponible",
+  "dateCreation": "20260220",
+  "dateUpdated": "20260220"
 },
 {
   "id": 2,
@@ -55,7 +57,8 @@
     "superficie_m2": 125,
     "terraza": true,
     "ascensor": true,
-    "piscina": true
+    "piscina": true,
+    "garaje": true
   },
   "ubicacion": {
     "calle": "Calle Orotava 5",
@@ -63,5 +66,27 @@
     "codigo_postal": "38004"
   },
   "estado": "Disponible"
+},
+{
+  "id": 2,
+  "titulo": "2º con ascensor",
+  "tipo": "Piso",
+  "precio": 120000,
+  "moneda": "EUR",
+  "detalles": {
+    "habitaciones": 2,
+    "banos": 1,
+    "superficie_m2": 72,
+    "terraza": true,
+    "garaje": true,
+    "ascensor": true,
+    "orientación": "oeste"
+  },
+  "ubicacion": {
+    "calle": "Calle Los Molinos",
+    "ciudad": "Santa Cruz",
+    "codigo_postal": "38004"
+  },
+  "estado": "Alquilado"
 }
 ]

@@ -44,7 +44,9 @@ let propiedades = [
     "visibility": true
   },
   "estado": "Disponible",
-  "legalStatus": "ocupada"
+  "legalStatus": "ocupada",
+  "dateCreation": "20260220",
+  "dateUpdated": "20260220"
 }
 ];
 
