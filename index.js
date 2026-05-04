@@ -3,6 +3,10 @@ const app = express();
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 app.use(express.json()); // Middleware para JSON
+const Ajv = require("ajv");
+const propiedadSchema = require("./schemas/jsonSchema");
+const ajv = new Ajv({ allErrors: true, strict: false });
+const validate = ajv.compile(propiedadSchema);
 
 // Datos en memoria (simulando DB)
 let propiedades = [
@@ -11,7 +15,6 @@ let propiedades = [
   "titulo": "Ático luminoso con vistas al parque",
   "tipo": "Piso",
   "precio": 250000,
-  "preciom2": 0,
   "moneda": "EUR",
   "vivienda": {
     "habitaciones": 3,
@@ -44,9 +47,7 @@ let propiedades = [
     "visibility": true
   },
   "estado": "Disponible",
-  "legalStatus": "ocupada",
-  "dateCreation": "20260220",
-  "dateUpdated": "20260220"
+  "legalStatus": "ocupada"
 }
 ];
 
@@ -71,7 +72,7 @@ app.get('/', (req, res) => res.send('¡API REAL STATE LIVE 🏠!'));
 
 app.get('/propiedades', (req, res) => res.json(propiedades));
 
-app.post('/propiedades', authMiddleware, (req, res) => {
+app.post('/propiedades', authMiddleware, validatePropiedad, (req, res) => {
     // Generamos un ID basado en el último elemento o 1 si está vacío
     const nuevoId = propiedades.length > 0 ? propiedades[propiedades.length - 1].id + 1 : 1;
     const nuevaPropiedad = {
@@ -94,7 +95,7 @@ app.put('/propiedades/:id', authMiddleware, (req, res) => {
             ...propiedades[index],
             ...req.body,
             id,
-            updatedAt: new Date() // 👈 solo actualizas este
+            updatedAt: new Date()
         };
         res.json(propiedades[index]);
     } else {
@@ -114,6 +115,22 @@ app.delete('/propiedades/:id', authMiddleware, (req, res) => {
         res.status(404).json({ mensaje: "No se encontró la propiedad para eliminar" });
     }
 });
+
+function validatePropiedad(req, res, next) {
+  const valid = validate(req.body);
+
+  if (!valid) {
+    console.log("❌ ERROR VALIDACIÓN:");
+    console.log(JSON.stringify(validate.errors, null, 2));
+
+    return res.status(400).json({
+      error: "JSON inválido",
+      detalles: validate.errors
+    });
+  }
+
+  next(); 
+}
 
 function authMiddleware(req, res, next) {
     const authHeader = req.headers["authorization"];

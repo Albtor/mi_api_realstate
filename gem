@@ -1,0 +1,40 @@
+npm run dev
+
+VALIDATE SCHEMA
+
+const Ajv = require("ajv");
+const propiedadSchema = require("./schemas/propiedad.schema");
+
+const ajv = new Ajv({ allErrors: true });
+
+const validate = ajv.compile(propiedadSchema);
+
+// ejemplo de datos
+const propiedad = {
+  id: 1,
+  titulo: "Piso en Madrid",
+  tipo: "Piso",
+  precio: 200000,
+  moneda: "EUR",
+  ubicacion: {
+    ciudad: "Madrid",
+    pais: "ES"
+  },
+  estado: "Disponible"
+};
+
+const valid = validate(propiedad);
+
+if (!valid) {
+  console.log(validate.errors);
+} else {
+  console.log("✅ Todo correcto");
+}
+
+
+
+## 4. Pasos para subir online
+Para que tu API se pueda subir sin errores, asegúrate de cumplir estos 3 requisitos:
+* **`process.env.PORT`**: Como viste en el código, no fuerces el puerto 3000. El hosting te asignará uno aleatorio.
+* **`.gitignore`**: Crea un archivo llamado `.gitignore` y escribe dentro `node_modules`. **Nunca** subas esa carpeta a GitHub; el hosting la instalará por ti.
+* **GitHub**: Necesitarás una cuenta de GitHub para subir tu código. Los hostings gratis se conectan a tu repositorio para publicar la API.
