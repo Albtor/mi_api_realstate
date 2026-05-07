@@ -5,8 +5,10 @@ const jwt = require("jsonwebtoken");
 app.use(express.json()); // Middleware para JSON
 const Ajv = require("ajv");
 const propiedadSchema = require("./schemas/jsonSchema");
-const ajv = new Ajv({ allErrors: true, strict: false });
+const ajv = new Ajv({ allErrors: true, strict: true });
 const validate = ajv.compile(propiedadSchema);
+import properties from "data/testdata.json" assert { type: "json" };
+import { postProperties } from "./functions.js";
 
 // Datos en memoria (simulando DB)
 let propiedades = [

@@ -1,18 +1,18 @@
 const schema = {
   type: "object",
-  required: ["id", "titulo", "tipo", "precio", "moneda", "ubicacion", "estado"],
+  required: ["titulo", "tipo", "precio", "moneda", "ubicacion", "estado"],
   properties: {
     id: { type: "integer" },
     titulo: { type: "string", minLength: 5 },
     tipo: {
       type: "string",
-      enum: ["Piso", "Casa", "Ático", "Estudio", "Chalet"]
+      enum: ["Piso", "Casa", "Ático", "Estudio", "Chalet", "Finca", "Casa Adosada"]
     },
     precio: { type: "number", minimum: 0 },
     preciom2: { type: "number", minimum: 0 },
     moneda: {
       type: "string",
-      enum: ["EUR", "USD"]
+      enum: ["EUR", "USD", "GDP", "JPY", "CNY"]
     },
 
     vivienda: {
