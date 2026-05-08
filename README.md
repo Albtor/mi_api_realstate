@@ -13,6 +13,7 @@ Alternatively can be deployed in local
 Conected repo from Github with Render for showcasing the utilities.
 As this is a free service, some requests might take some delay (approx 50 secs sometimes)
 
+Run in terminal: npm run dev
 
 
 # Editing this README

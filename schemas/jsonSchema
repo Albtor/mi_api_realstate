@@ -1,86 +1,205 @@
 const schema = {
-  type: "object",
-  required: ["titulo", "tipo", "precio", "moneda", "ubicacion", "estado"],
-  properties: {
-    id: { type: "integer" },
-    titulo: { type: "string", minLength: 5 },
-    tipo: {
-      type: "string",
-      enum: ["Piso", "Casa", "Ático", "Estudio", "Chalet", "Finca", "Casa Adosada"]
-    },
-    precio: { type: "number", minimum: 0 },
-    preciom2: { type: "number", minimum: 0 },
-    moneda: {
-      type: "string",
-      enum: ["EUR", "USD", "GDP", "JPY", "CNY"]
-    },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Real Estate Property",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "title",
+      "type",
+      "price",
+      "currency",
+      "location",
+      "status"
+    ],
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
 
-    vivienda: {
-      type: "object",
-      required: ["habitaciones", "banos", "superficie_m2"],
-      properties: {
-        habitaciones: { type: "integer", minimum: 0 },
-        banos: { type: "integer", minimum: 0 },
-        superficie_m2: { type: "number", minimum: 0 },
-        terraza: { type: "boolean" },
-        ascensor: { type: "boolean" },
-        garaje: { type: "boolean" },
-        trastero: { type: "boolean" },
-        planta: { type: "integer" },
-        orientacion: {
-          type: "array",
-          items: {
-            type: "string",
-            enum: ["norte", "sur", "este", "oeste"]
+      "title": {
+        "type": "string",
+        "minLength": 5
+      },
+
+      "type": {
+        "type": "string",
+        "enum": [
+          "Apartment",
+          "House",
+          "Penthouse",
+          "Studio",
+          "Villa",
+          "Farmhouse",
+          "Townhouse"
+        ]
+      },
+
+      "price": {
+        "type": "number",
+        "minimum": 0
+      },
+
+      "price_per_m2": {
+        "type": "number",
+        "minimum": 0
+      },
+
+      "currency": {
+        "type": "string",
+        "enum": ["EUR", "USD", "GBP", "JPY", "CNY"]
+      },
+
+      "property": {
+        "type": "object",
+        "required": [
+          "bedrooms",
+          "bathrooms",
+          "surface_m2"
+        ],
+        "properties": {
+          "bedrooms": {
+            "type": "integer",
+            "minimum": 0
+          },
+
+          "bathrooms": {
+            "type": "integer",
+            "minimum": 0
+          },
+
+          "surface_m2": {
+            "type": "number",
+            "minimum": 0
+          },
+
+          "terrace": {
+            "type": "boolean"
+          },
+
+          "elevator": {
+            "type": "boolean"
+          },
+
+          "garage": {
+            "type": "boolean"
+          },
+
+          "storage_room": {
+            "type": "boolean"
+          },
+
+          "floor": {
+            "type": "integer"
+          },
+
+          "orientation": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["north", "south", "east", "west"]
+            }
           }
         },
-        "extrasVivienda": ["piscina, gimnasio"]
+        "additionalProperties": false
       },
-      additionalProperties: false
-    },
 
-    edificio: {
-      type: "object",
-      properties: {
-        año: { type: "integer" },
-        numVecinos: { type: "integer" },
-        numeroPlantas: { type: "integer" },
+      "building": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "integer"
+          },
 
-        extras: {
-          type: "array",
-          items: { type: "string" }
-        }
-      },
-      additionalProperties: false
-    },
+          "neighbors": {
+            "type": "integer"
+          },
 
-    ubicacion: {
-      type: "object",
-      required: ["ciudad", "pais"],
-      properties: {
-        calle: { type: "string" },
-        ciudad: { type: "string" },
-        codigo_postal: { type: "string" },
-        provincia: { type: "string" },
-        pais: {
-          type: "string",
-          enum: ["ES", "FR", "PT"]
+          "floors": {
+            "type": "integer"
+          },
+
+          "extras": {
+            "type": "object",
+            "properties": {
+              "pool": {
+                "type": "string",
+                "enum": ["private", "shared", "none"]
+              },
+
+              "gym": {
+                "type": "boolean"
+              },
+
+              "jacuzzi": {
+                "type": "boolean"
+              },
+
+              "sports_courts": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          }
         },
-        visibility: { type: "boolean" },
+        "additionalProperties": false
       },
-      additionalProperties: false
+
+      "location": {
+        "type": "object",
+        "required": [
+          "city",
+          "country"
+        ],
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+
+          "city": {
+            "type": "string"
+          },
+
+          "postal_code": {
+            "type": "string"
+          },
+
+          "province": {
+            "type": "string"
+          },
+
+          "country": {
+            "type": "string",
+            "enum": ["ES", "FR", "PT"]
+          },
+
+          "visibility": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+
+      "status": {
+        "type": "string",
+        "enum": [
+          "Available",
+          "Reserved",
+          "Sold"
+        ]
+      },
+
+      "legalStatus": {
+        "type": "string",
+        "enum": [
+          "free",
+          "occupied",
+          "under_litigation"
+        ]
+      }
     },
 
-    estado: {
-      type: "string",
-      enum: ["Disponible", "Reservado", "Vendido"]
-    },
-
-    legalStatus: {
-      type: "string",
-      enum: ["libre", "ocupada", "en litigio"]
-    }
-  },
-
-  additionalProperties: false
+    "additionalProperties": false
+  }
 };
