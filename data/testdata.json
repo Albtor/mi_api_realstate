@@ -1,177 +1,177 @@
 [
   {
     "id": 1,
-    "titulo": "Piso luminoso en el centro de Madrid",
-    "tipo": "Piso",
-    "precio": 365000,
-    "preciom2": 4562.5,
-    "moneda": "EUR",
-    "vivienda": {
-      "habitaciones": 3,
-      "banos": 2,
-      "superficie_m2": 80,
-      "terraza": true,
-      "ascensor": true,
-      "garaje": false,
-      "trastero": true,
-      "planta": 4,
-      "orientacion": ["sur", "este"]
+    "title": "Piso luminoso en el centro de Madrid",
+    "type": "Piso",
+    "price": 365000,
+    "pricePerM2": 4562.5,
+    "currency": "EUR",
+    "housing": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "surface_m2": 80,
+      "terrace": true,
+      "elevator": true,
+      "garage": false,
+      "storageRoom": true,
+      "floor": 4,
+      "orientation": ["sur", "este"]
     },
-    "edificio": {
-      "año": 1998,
-      "numVecinos": 24,
-      "numeroPlantas": 6,
+    "building": {
+      "year": 1998,
+      "numNeighbors": 24,
+      "numFloors": 6,
       "extras": ["portero", "videovigilancia"]
     },
-    "ubicacion": {
-      "calle": "Calle Alcalá 120",
-      "ciudad": "Madrid",
-      "codigo_postal": "28009",
-      "provincia": "Madrid",
-      "pais": "ES",
+    "location": {
+      "street": "Calle Alcalá 120",
+      "city": "Madrid",
+      "postalCode": "28009",
+      "province": "Madrid",
+      "country": "ES",
       "visibility": true
     },
-    "estado": "Disponible",
+    "status": "Disponible",
     "legalStatus": "libre"
   },
   {
     "id": 2,
-    "titulo": "Chalet familiar con jardín privado",
-    "tipo": "Chalet",
-    "precio": 720000,
-    "preciom2": 3000,
-    "moneda": "EUR",
-    "vivienda": {
-      "habitaciones": 5,
-      "banos": 4,
-      "superficie_m2": 240,
-      "terraza": true,
-      "ascensor": false,
-      "garaje": true,
-      "trastero": true,
-      "planta": 2,
-      "orientacion": ["norte", "oeste"]
+    "title": "Chalet familiar con jardín privado",
+    "type": "Chalet",
+    "price": 720000,
+    "pricePerM2": 3000,
+    "currency": "EUR",
+    "housing": {
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "surface_m2": 240,
+      "terrace": true,
+      "elevator": false,
+      "garage": true,
+      "storageRoom": true,
+      "floor": 2,
+      "orientation": ["norte", "oeste"]
     },
-    "edificio": {
-      "año": 2010,
-      "numVecinos": 8,
-      "numeroPlantas": 2,
+    "building": {
+      "year": 2010,
+      "numNeighbors": 8,
+      "numFloors": 2,
       "extras": ["piscina comunitaria", "zona infantil"]
     },
-    "ubicacion": {
-      "calle": "Rua das Flores 15",
-      "ciudad": "Lisboa",
-      "codigo_postal": "1200-109",
-      "provincia": "Lisboa",
-      "pais": "PT",
+    "location": {
+      "street": "Rua das Flores 15",
+      "city": "Lisboa",
+      "postalCode": "1200-109",
+      "province": "Lisboa",
+      "country": "PT",
       "visibility": false
     },
-    "estado": "Reservado",
+    "status": "Reservado",
     "legalStatus": "ocupada"
   },
   {
     "id": 3,
-    "titulo": "Estudio moderno cerca de la playa",
-    "tipo": "Estudio",
-    "precio": 185000,
-    "preciom2": 5285.71,
-    "moneda": "EUR",
-    "vivienda": {
-      "habitaciones": 1,
-      "banos": 1,
-      "superficie_m2": 35,
-      "terraza": false,
-      "ascensor": true,
-      "garaje": false,
-      "trastero": false,
-      "planta": 7,
-      "orientacion": ["este"]
+    "title": "Estudio moderno cerca de la playa",
+    "type": "Estudio",
+    "price": 185000,
+    "pricePerM2": 5285.71,
+    "currency": "EUR",
+    "housing": {
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "surface_m2": 35,
+      "terrace": false,
+      "elevator": true,
+      "garage": false,
+      "storageRoom": false,
+      "floor": 7,
+      "orientation": ["este"]
     },
-    "edificio": {
-      "año": 2021,
-      "numVecinos": 40,
-      "numeroPlantas": 10,
+    "building": {
+      "year": 2021,
+      "numNeighbors": 40,
+      "numFloors": 10,
       "extras": ["gimnasio", "coworking"]
     },
-    "ubicacion": {
-      "calle": "Avenue de la Mer 8",
-      "ciudad": "Niza",
-      "codigo_postal": "06000",
-      "provincia": "Provence-Alpes-Côte d’Azur",
-      "pais": "FR",
+    "location": {
+      "street": "Avenue de la Mer 8",
+      "city": "Niza",
+      "postalCode": "06000",
+      "province": "Provence-Alpes-Côte d’Azur",
+      "country": "FR",
       "visibility": true
     },
-    "estado": "Disponible",
+    "status": "Disponible",
     "legalStatus": "libre"
   },
   {
     "id": 4,
-    "titulo": "Casa adosada reformada con garaje",
-    "tipo": "Casa Adosada",
-    "precio": 410000,
-    "preciom2": 2733.33,
-    "moneda": "USD",
-    "vivienda": {
-      "habitaciones": 4,
-      "banos": 3,
-      "superficie_m2": 150,
-      "terraza": true,
-      "ascensor": false,
-      "garaje": true,
-      "trastero": true,
-      "planta": 3,
-      "orientacion": ["sur"]
+    "title": "Casa adosada reformada con garaje",
+    "type": "Casa Adosada",
+    "price": 410000,
+    "pricePerM2": 2733.33,
+    "currency": "USD",
+    "housing": {
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "surface_m2": 150,
+      "terrace": true,
+      "elevator": false,
+      "garage": true,
+      "storageRoom": true,
+      "floor": 3,
+      "orientation": ["sur"]
     },
-    "edificio": {
-      "año": 2005,
-      "numVecinos": 12,
-      "numeroPlantas": 3,
+    "building": {
+      "year": 2005,
+      "numNeighbors": 12,
+      "numFloors": 3,
       "extras": ["zona verde", "parking visitantes"]
     },
-    "ubicacion": {
-      "calle": "Carrer del Sol 44",
-      "ciudad": "Valencia",
-      "codigo_postal": "46011",
-      "provincia": "Valencia",
-      "pais": "ES",
+    "location": {
+      "street": "Carrer del Sol 44",
+      "city": "Valencia",
+      "postalCode": "46011",
+      "province": "Valencia",
+      "country": "ES",
       "visibility": false
     },
-    "estado": "Vendido",
+    "status": "Vendido",
     "legalStatus": "en litigio"
   },
   {
     "id": 5,
-    "titulo": "Ático exclusivo con vistas panorámicas",
-    "tipo": "Ático",
-    "precio": 950000,
-    "preciom2": 6785.71,
-    "moneda": "JPY",
-    "vivienda": {
-      "habitaciones": 4,
-      "banos": 3,
-      "superficie_m2": 140,
-      "terraza": true,
-      "ascensor": true,
-      "garaje": true,
-      "trastero": true,
-      "planta": 12,
-      "orientacion": ["sur", "oeste"]
+    "title": "Ático exclusivo con vistas panorámicas",
+    "type": "Ático",
+    "price": 950000,
+    "pricePerM2": 6785.71,
+    "currency": "JPY",
+    "housing": {
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "surface_m2": 140,
+      "terrace": true,
+      "elevator": true,
+      "garage": true,
+      "storageRoom": true,
+      "floor": 12,
+      "orientation": ["sur", "oeste"]
     },
-    "edificio": {
-      "año": 2018,
-      "numVecinos": 60,
-      "numeroPlantas": 15,
+    "building": {
+      "year": 2018,
+      "numNeighbors": 60,
+      "numFloors": 15,
       "extras": ["spa", "seguridad 24h", "azotea comunitaria"]
     },
-    "ubicacion": {
-      "calle": "Passeig Marítim 88",
-      "ciudad": "Barcelona",
-      "codigo_postal": "08003",
-      "provincia": "Barcelona",
-      "pais": "ES",
+    "location": {
+      "street": "Passeig Marítim 88",
+      "city": "Barcelona",
+      "postalCode": "08003",
+      "province": "Barcelona",
+      "country": "ES",
       "visibility": true
     },
-    "estado": "Disponible",
+    "status": "Disponible",
     "legalStatus": "libre"
   }
 ]
