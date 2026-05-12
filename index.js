@@ -4,13 +4,16 @@ require('dotenv').config();
 const jwt = require("jsonwebtoken");
 app.use(express.json()); // Middleware para JSON
 const Ajv = require("ajv");
-const propertiesSchema = require("./schemas/jsonSchema");
-const ajv = new Ajv({ allErrors: true, strict: true });
-const validate = ajv.compile(propertiesSchema);
+const propertySchema = require("./schemas/jsonSchema");
+console.log(propertySchema);
+const ajv = new Ajv({ 
+    allErrors: true, 
+    strict: true,
+    removeAdditional: false });
+const validate = ajv.compile(propertySchema);
 // import properties_data from "data/testdata.json" assert { type: "json" };
 // import { postProperties } from "./functions.js";
 
-// Datos en memoria (simulating DB)
 // let properties = properties_data;
 
 let properties = [
@@ -142,6 +145,8 @@ function authMiddleware(req, res, next) {
 //Validate Property against Json Schema
 function validateProperty(req, res, next) {
   const valid = validate(req.body);
+  console.log("VALID:", valid);
+  console.log(validate.errors);
 
   if (!valid) {
     console.log("❌ VALIDATION ERROR:");

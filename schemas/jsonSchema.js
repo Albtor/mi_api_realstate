@@ -1,11 +1,8 @@
 const schema = {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Real Estate Property",
-  "type": "array",
-  "items": {
-    "type": "object",
+  "type": "object",
+  "type": "object",
     "required": [
-      "id",
       "title",
       "type",
       "price",
@@ -201,5 +198,7 @@ const schema = {
     },
 
     "additionalProperties": false
-  }
+  
 };
+
+module.exports = schema;
