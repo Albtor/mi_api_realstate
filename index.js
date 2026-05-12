@@ -63,6 +63,15 @@ const SECRET = process.env.JWT_SECRET;
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
 
+    const adminUser = process.env.ADMIN_USER;
+    const adminPass = process.env.ADMIN_PASS;
+
+    if (!adminUser || !adminPass) {
+    return res.status(500).json({
+      error: "Server misconfigured (missing env vars)"
+    });
+  }
+
     if (
         username.trim() === process.env.ADMIN_USER.trim() &&
         password.trim() === process.env.ADMIN_PASS.trim()
