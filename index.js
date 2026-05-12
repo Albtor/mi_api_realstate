@@ -65,6 +65,11 @@ app.post("/login", (req, res) => {
 
     const adminUser = process.env.ADMIN_USER;
     const adminPass = process.env.ADMIN_PASS;
+        console.log("ENV CHECK:", {
+    ADMIN_USER: process.env.ADMIN_USER,
+    ADMIN_PASS: process.env.ADMIN_PASS ? "SET" : "MISSING",
+    SECRET: process.env.SECRET ? "SET" : "MISSING"
+    });
 
     if (!adminUser || !adminPass) {
     return res.status(500).json({
@@ -72,9 +77,9 @@ app.post("/login", (req, res) => {
     });
   }
 
-    if (
-        username.trim() === process.env.ADMIN_USER.trim() &&
-        password.trim() === process.env.ADMIN_PASS.trim()
+     if (
+    username?.trim() === adminUser.trim() &&
+    password?.trim() === adminPass.trim()
     ) {
         const token = jwt.sign({ username }, SECRET, { expiresIn: "1h" });
         return res.json({ token });
