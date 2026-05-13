@@ -3,9 +3,10 @@ const app = express();
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 app.use(express.json()); // Middleware para JSON
+app.use(express.static(__dirname)); // Servir archivos estáticos desde el directorio raíz (para index.html y favicon.ico)
 const Ajv = require("ajv");
 const propertySchema = require("./schemas/jsonSchema");
-console.log(propertySchema);
+// console.log(propertySchema);
 const ajv = new Ajv({ 
     allErrors: true, 
     strict: true,
@@ -89,7 +90,23 @@ app.post("/login", (req, res) => {
 });
 
 // RUTAS
-app.get('/', (req, res) => res.send('¡API REAL STATE LIVE 🏠!'));
+// app.get('/', (req, res) => res.send('¡API REAL STATE LIVE 🏠!'));
+
+app.get("/", (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Real Estate API</title>
+        <link rel="icon" href="/img/favicon.ico">
+      </head>
+
+      <body style="font-family: sans-serif">
+        <h2>¡API REAL STATE LIVE 🏠!</h2>
+      </body>
+    </html>
+  `);
+});
 
 app.get('/properties', (req, res) => res.json(properties));
 
@@ -159,8 +176,8 @@ function authMiddleware(req, res, next) {
 //Validate Property against Json Schema
 function validateProperty(req, res, next) {
   const valid = validate(req.body);
-  console.log("VALID:", valid);
-  console.log(validate.errors);
+//   console.log("VALID:", valid);
+//   console.log(validate.errors);
 
   if (!valid) {
     console.log("❌ VALIDATION ERROR:");
